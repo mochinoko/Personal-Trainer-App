@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-
+import React, { useState, useEffect} from 'react';
+import AddCustomer from './AddCustomer';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
@@ -27,10 +27,27 @@ const getCustomers = () => {
     .catch(err => console.error(err))
 }
 
+//Delete customer
+
+const deleteCustomer = () => {
+
+}
+//add customer
+const addCustomer = (newCustomer) => {
+    fetch('https://customerrest.herokuapp.com/api/customers', {
+        method: 'POST', 
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify(newCustomer)
+    })
+    .then(_ => getCustomers())
+    .catch(err => console.error(err))
+}
+
+
     return(
-        <div> 
-            <h1>Customers</h1>
-         
+        <div>
+            <AddCustomer addCustomer={addCustomer} />
+
             <div className="ag-theme-material" 
             style={{height: '700px', width: '70%', margin: 'auto'}}>
           
@@ -41,10 +58,10 @@ const getCustomers = () => {
             paginationPageSize={10}
             >
             </AgGridReact>
-        
             </div>
        
         </div>
+ 
     );
 }
 
