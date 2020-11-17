@@ -6,8 +6,7 @@ import Menu from './Menu';
 
   return(
     <div>
-
-      <Menu />
+     <Menu />
     </div>
   );
 }
