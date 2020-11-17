@@ -6,6 +6,7 @@ import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import EditCustomer from './EditCustomer';
+import Training from './Training';
 
 
 
@@ -23,6 +24,17 @@ const [open, setOpen] =useState(false);
 const [msg, setMsg] = useState('');
 
 const columns = [
+        {
+            headerName: '', 
+            field: 'links.rel.self.href',
+            cellRendererFramework: params => 
+            <Button
+            size="small"
+            onClick={() => Training(params.value)}
+            >Add Training 
+            </Button>
+            
+        },
         {headerName: 'firstname', field:'firstname', sortable: true, filter:true,  width: 120 },
         {headerName: 'lastname', field:'lastname', sortable: true, filter:true,  width: 120  },
         {headerName: 'streetaddress', field:'streetaddress', sortable: true, filter:true },
