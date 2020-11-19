@@ -135,10 +135,10 @@ const updateCustomer = (link, customer) => {
                 >
                 </AgGridReact>
                 <Snackbar 
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                message={msg}
+                    open={open}
+                    autoHideDuration={3000}
+                    onClose={handleClose}
+                    message={msg}
                 />
             </div>
        

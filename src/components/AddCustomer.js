@@ -106,7 +106,7 @@ return(
                     />
                 </DialogContent>
             <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleClose}   color="secondary">
                 Cancel
             </Button>
             <Button onClick={handleSave} color="primary">
