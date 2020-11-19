@@ -9,12 +9,13 @@ import CustomerList from './CustomerList';
     <div>
       <BrowserRouter>
         <div>
-            <Link to="/home">Home</Link>
-            <Link to="/training">Training</Link>
+            <Link to="/home" > Home </Link>
+            
+            <Link to="/training"> Training </Link>
             <Switch>
                 <Route exact path="/home" component={CustomerList} />
               
-                <Route path="/training" component={Training} />
+                <Route path="/training" component={Training} margin="auto" />
         
                 <Route render={() => <h1>Page not found</h1>} />
             </Switch>

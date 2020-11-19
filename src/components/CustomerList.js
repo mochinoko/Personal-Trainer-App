@@ -78,7 +78,7 @@ const deleteCustomer = (link) => {
         })
         .then(_ => getCustomers())
         .then(_ => gridRef.current.refreshCells({rowNodes: getCustomers()}))
-        .then(_ => setMsg('Car was deleteed succesfully'))
+        .then(_ => setMsg('Customer was deleteed succesfully'))
         .then(_ =>  setOpen(true))
         .catch(err=> console.err(err))
     }
@@ -127,6 +127,7 @@ const updateCustomer = (link, customer) => {
 
     return(
         <div>
+            <br />
             <AddCustomer addCustomer={addCustomer} />
  
             <div className="ag-theme-material" 

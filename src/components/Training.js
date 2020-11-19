@@ -38,7 +38,7 @@ const deleteTraining = (id) => {
             method: 'DELETE'
         })
         .then(_ => getTrainings())
-        .then(_ => gridRef.current.refreshCells({rowNodes: getTrainings()}))
+        //.then(_ => gridRef.current.refreshCells({rowNodes: getTrainings()}))
         .then(_ => setMsg('Training was deleteed succesfully'))
         .then(_ =>  setOpen(true))
         .catch((err)=> console.error(err))
@@ -48,6 +48,8 @@ const deleteTraining = (id) => {
 const handleClose = () => {
     setOpen(false);
 }
+
+
 
 const columns = [
     {
