@@ -3,7 +3,7 @@ import moment from 'moment';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
-import AddTraining from './AddTraining';
+//import AddTraining from './AddTraining';
 import Snackbar from '@material-ui/core/Snackbar';
 import Button from '@material-ui/core/Button';
 
@@ -30,7 +30,7 @@ const getTrainings = () => {
     .catch(err => console.error(err))
 }
 //add trainings
-
+/*
 const addTraining = (newTraining) => {
     fetch('https://customerrest.herokuapp.com/api/trainings', {
         method: 'POST', 
@@ -40,19 +40,20 @@ const addTraining = (newTraining) => {
     .then(_ => getTrainings())
     .catch(err => console.error(err))
 };
+*/
 
 //Delete training
 
-const deleteTraining = (link) => {
+const deleteTraining = (id) => {
     
     if(window.confirm('Are you sure?')){
-        fetch(link, {
+        fetch('https://customerrest.herokuapp.com/gettrainings/'+ id, {
             method: 'DELETE'
         })
         .then(_ => getTrainings())
         .then(_ => gridRef.current.refreshCells({rowNodes: getTrainings()}))
-        .then(_ => setMsg('Training was deleteed succesfully'))
-        .then(_ =>  setOpen(true))
+       // .then(_ => setMsg('Training was deleteed succesfully'))
+       // .then(_ =>  setOpen(true))
         .catch((err)=> console.err(err))
     }
 };
@@ -65,11 +66,11 @@ const columns = [
     {
         headerName: 'Date', 
         cellRendererFramework: (row) =>
-        moment(row.data.date).format("Do MMM YYYY, h:mm"),
+        moment(row.data.date).format("DD.MM.YY.hh:mm"),
         sortable: true, 
         filter:true 
     },
-    {headerName: 'Customer name', field: `customer.lastname`, sortable: true, filter:true },
+    {headerName: 'Customer name', field: 'customer.lastname', sortable: true, filter:true },
     
     {headerName: 'Activity', field:'activity', sortable: true, filter:true },
     {headerName: 'Duration', field:'duration', sortable: true, filter:true },
@@ -93,7 +94,7 @@ const columns = [
     return(
         <div> 
             <h1>Trainings</h1>
-             <AddTraining addTraining={addTraining} />
+            
                 <div className="ag-theme-material" 
                     style={{height: '700px', width: '70%', margin: 'auto'}}>
             
