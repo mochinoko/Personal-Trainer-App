@@ -100,6 +100,19 @@ const handleClose = () => {
     setOpen(false);
 }
 
+//add trainings
+/*
+const addTraining = (newTraining) => {
+    fetch('https://customerrest.herokuapp.com/api/trainings', {
+        method: 'POST', 
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify(newTraining)
+    })
+    .then(_ => getTrainings())
+    .catch(err => console.error(err))
+};
+*/
+
 //update customer
 const updateCustomer = (link, customer) => {
     fetch(link, {

@@ -29,32 +29,21 @@ const getTrainings = () => {
     
     .catch(err => console.error(err))
 }
-//add trainings
-/*
-const addTraining = (newTraining) => {
-    fetch('https://customerrest.herokuapp.com/api/trainings', {
-        method: 'POST', 
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(newTraining)
-    })
-    .then(_ => getTrainings())
-    .catch(err => console.error(err))
-};
-*/
+
 
 //Delete training
 
 const deleteTraining = (id) => {
     
     if(window.confirm('Are you sure?')){
-        fetch('https://customerrest.herokuapp.com/gettrainings/'+ id, {
+        fetch('https://customerrest.herokuapp.com/api/trainings/'+id, {
             method: 'DELETE'
         })
         .then(_ => getTrainings())
         .then(_ => gridRef.current.refreshCells({rowNodes: getTrainings()}))
        // .then(_ => setMsg('Training was deleteed succesfully'))
        // .then(_ =>  setOpen(true))
-        .catch((err)=> console.err(err))
+        .catch((err)=> console.error(err))
     }
 };
 
