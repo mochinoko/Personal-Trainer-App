@@ -3,7 +3,6 @@ import moment from 'moment';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
-//import AddTraining from './AddTraining';
 import Snackbar from '@material-ui/core/Snackbar';
 import Button from '@material-ui/core/Button';
 
@@ -26,7 +25,6 @@ const getTrainings = () => {
     fetch('https://customerrest.herokuapp.com/gettrainings')
     .then(response => response.json())
     .then(data => setTrainings(data) )
-    
     .catch(err => console.error(err))
 }
 
@@ -41,8 +39,8 @@ const deleteTraining = (id) => {
         })
         .then(_ => getTrainings())
         .then(_ => gridRef.current.refreshCells({rowNodes: getTrainings()}))
-       // .then(_ => setMsg('Training was deleteed succesfully'))
-       // .then(_ =>  setOpen(true))
+        .then(_ => setMsg('Training was deleteed succesfully'))
+        .then(_ =>  setOpen(true))
         .catch((err)=> console.error(err))
     }
 };

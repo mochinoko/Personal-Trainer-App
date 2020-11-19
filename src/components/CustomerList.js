@@ -6,7 +6,7 @@ import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import EditCustomer from './EditCustomer';
-import Training from './Training';
+import AddTraining from './AddTraining';
 
 
 
@@ -26,13 +26,11 @@ const [msg, setMsg] = useState('');
 const columns = [
         {
             headerName: '', 
-            field: 'links.rel.self.href',
+            field: 'links.0.href',
             cellRendererFramework: params => 
-            <Button
-            size="small"
-            onClick={() => Training(params.value)}
-            >Add Training 
-            </Button>
+           
+           <AddTraining addTraining={addTraining} customer={params.data} />
+         
             
         },
         {headerName: 'firstname', field:'firstname', sortable: true, filter:true,  width: 120 },
@@ -101,17 +99,17 @@ const handleClose = () => {
 }
 
 //add trainings
-/*
+
 const addTraining = (newTraining) => {
     fetch('https://customerrest.herokuapp.com/api/trainings', {
         method: 'POST', 
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify(newTraining)
     })
-    .then(_ => getTrainings())
+    .then(_ => getCustomers())
     .catch(err => console.error(err))
 };
-*/
+
 
 //update customer
 const updateCustomer = (link, customer) => {
@@ -130,7 +128,7 @@ const updateCustomer = (link, customer) => {
     return(
         <div>
             <AddCustomer addCustomer={addCustomer} />
-
+ 
             <div className="ag-theme-material" 
             style={{height: '700px', width: '80%', margin: 'auto'}}
             >

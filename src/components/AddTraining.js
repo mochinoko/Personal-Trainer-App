@@ -16,7 +16,7 @@ export default function AddTraining(props){
        date:'',
        duration: '',
        activity: '',
-       customer:''
+       customer: props.customer.links[0].href
     })
 
     const handleClickOpen = () => {
@@ -38,7 +38,7 @@ export default function AddTraining(props){
 return(
 
     <div>
-        <Button  variant="outlined" color="primary" onClick={handleClickOpen}>
+        <Button  size="small" variant="outlined" color="primary" onClick={handleClickOpen}>
           Add Training
         </Button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -69,16 +69,7 @@ return(
                         label="Activity"
                         fullWidth
                     />
-                    <TextField
-                        name="customer"
-                        value={training.customer}
-                        onChange={inputChanged}
-                        margin="dense"
-                        label="Customer"
-                        fullWidth
-                    />
-             
-                
+
                 </DialogContent>
             <DialogActions>
             <Button onClick={handleClose} color="primary">
