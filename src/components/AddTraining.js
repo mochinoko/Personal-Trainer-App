@@ -15,7 +15,8 @@ export default function AddTraining(props){
     const [training, setTraining] = useState({//default value
        date:'',
        duration: '',
-       activity: ''
+       activity: '',
+       customer:''
     })
 
     const handleClickOpen = () => {
@@ -66,6 +67,14 @@ return(
                         onChange={inputChanged}
                         margin="dense"
                         label="Activity"
+                        fullWidth
+                    />
+                    <TextField
+                        name="customer"
+                        value={training.customer}
+                        onChange={inputChanged}
+                        margin="dense"
+                        label="Customer"
                         fullWidth
                     />
              
