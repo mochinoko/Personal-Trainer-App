@@ -1,30 +1,41 @@
-import React, { useState } from "react";
-import { DatePicker } from "@material-ui/pickers";
+import React, { useState, useEffect } from "react";
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
 
 
- function Calendar() {
+export default function Calendar(){
 
-  const [date, changeDate] = useState(new Date());
+    const [newEventDate, setNewEventDate] = useState([ {titile: '', start:'', end:''} ]);
+
+    useEffect(() => {
+        getTrainings();
+    },[]);
+
+    //get date's data from database
+
+    const getTrainings = () => {
+        fetch('https://customerrest.herokuapp.com/gettrainings')
+        .then(response => response.json())
+        //.then(data => setTrainings(data) )
+        .catch(err => console.error(err))
+    }
+
+    //list data to calendar
+
+
+
   return(
-    <div>
-      <DatePicker
-        autoOk
-        variant="static"
-        openTo="year"
-        value={date}
-        onChange={changeDate}
-      />
+    <div className="ag-theme-material" 
+    style={{height: '700px', width: '80%', margin: 'auto'}}>
+        this is calendar
+            <FullCalendar
+                defaultView="dayGridMonth"
+                plugins={[ dayGridPlugin ]}
+                initialView="dayGridMonth"
+                weekends={true}
+            />
 
-      <DatePicker
-        autoOk
-        orientation="landscape"
-        variant="static"
-        openTo="date"
-        value={date}
-        onChange={changeDate}
-      />
     </div>
   );
-}
 
-export default Calendar;
+}
