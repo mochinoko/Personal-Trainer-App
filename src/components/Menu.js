@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import Training from './Training';
 import CustomerList from './CustomerList';
-import Calendar from './Calendar';
+import MyCalendar from './Calendar';
 
  function Menu() {
 
@@ -20,7 +20,7 @@ import Calendar from './Calendar';
               
                 <Route path="/training" component={Training}  />
 
-                <Route path="/calendar" component={Calendar} />
+                <Route path="/calendar" component={MyCalendar} />
         
                 <Route render={() => <h1>Page not found</h1>} />
             </Switch>

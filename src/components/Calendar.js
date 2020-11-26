@@ -1,41 +1,56 @@
 import React, { useState, useEffect } from "react";
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
 
+import { Calendar, momentLocalizer  } from 'react-big-calendar'
+import moment from "moment";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
-export default function Calendar(){
+export default function MyCalendar(){
+    
+    const localizer = momentLocalizer(moment);
 
-    const [newEventDate, setNewEventDate] = useState([ {titile: '', start:'', end:''} ]);
+    const [trainings, setTrainings] = useState([{
+      
+        title:'',
+        start: '',
+        end: ''
+    },]);
 
     useEffect(() => {
-        getTrainings();
+        loadTrainings();
     },[]);
 
     //get date's data from database
 
-    const getTrainings = () => {
+    const loadTrainings = () => {
         fetch('https://customerrest.herokuapp.com/gettrainings')
         .then(response => response.json())
-        //.then(data => setTrainings(data) )
+        .then(trainings =>  {
+            return setTrainings(
+                trainings.map((data) =>({
+                  
+                    title: data.activity + " / "+ data.customer.firstname +" " + data.customer.lastname,
+                    start: new Date(moment(data.date)),
+                    end: new Date(moment(data.date).add(data.duration, "minutes")),      
+             }))
+             );
+            })
         .catch(err => console.error(err))
-    }
-
-    //list data to calendar
-
-
+    };
 
   return(
     <div className="ag-theme-material" 
     style={{height: '700px', width: '80%', margin: 'auto'}}>
-        this is calendar
-            <FullCalendar
-                defaultView="dayGridMonth"
-                plugins={[ dayGridPlugin ]}
-                initialView="dayGridMonth"
-                weekends={true}
-            />
-
+        <div style={{ height: 500 }}>
+        <Calendar
+          defaultView="month"
+          events={trainings}
+          defaultDate={new Date()}
+          localizer={localizer}
+        style={{height: "700px", width: "100%", margin: "15px"}}
+         />
+      </div>
     </div>
   );
+
 
 }
