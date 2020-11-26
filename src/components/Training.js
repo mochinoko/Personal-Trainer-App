@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -18,7 +18,7 @@ useEffect(() => {
    
 },[]);
 
-const gridRef = useRef();
+
 
 //get trainings list
 const getTrainings = () => {
